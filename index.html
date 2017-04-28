@@ -1,0 +1,33 @@
+<html ng-app="myapp">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script type="text/javascript">
+	var myapp = angular.module('myapp', []);
+	myapp.controller('demoController', function($scope, $http){
+		$http.get("https://www.w3schools.com/angular/customers.php")
+		.success(function(response) {
+			$scope.names = response.records;
+		});
+	});
+
+	</script>
+
+</head>
+<body ng-controller="demoController">
+	<table cellpadding="2" cellspacing="2" border="1">
+		<tr>
+			<th>Name</th>
+			<th>City</th>
+			<th>Country</th>
+		</tr>
+
+		<tr ng-repeat="item in names">
+			<td>{{item.Name}}</td>
+			<td>{{item.City}}</td>
+			<td>{{item.Country}}</td>
+		</tr>
+	</table>
+</body>
+</html>
